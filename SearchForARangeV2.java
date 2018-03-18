@@ -1,12 +1,12 @@
   
   
-  public class SearchForARangeV2 {
+public class SearchForARangeV2 {
   
     public static int[] searchRange(int[] nums, int target) {
         return new int[]{firstIndex(nums, target), lastIndex(nums, target)};  
     }
  
- private static int firstIndex(int[] arr, int target){
+    private static int firstIndex(int[] arr, int target){
         int start = 0;
         int end = arr.length - 1;
         while(start <= end) {
