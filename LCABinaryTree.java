@@ -14,7 +14,7 @@ public class LCABinaryTree {
 	 */
 	public static TreeNode lowestCommonAncestorV1(TreeNode root, TreeNode p, TreeNode q) {
 		if (root == null)
-			return null;
+		   return null;
 
 		// 1. check if any of the nodes are equal to "root"
 		if (root.equals(p) || root.equals(q)) {  // Note : use equals method. This will take care if tree has duplicate values.
@@ -41,25 +41,27 @@ public class LCABinaryTree {
 	 *  Runtime : O(N), Space : O(H);
 	 */
 	public static TreeNode lowestCommonAncestorV2(TreeNode root, TreeNode p, TreeNode q) {
-		if (p.equals(q))
-			return p;
+		if(root == null) 
+		    return null;
+		if (root.equals(p) || root.equals(q))
+		    return root;
 		
 		Stack<TreeNode> path1 = path(root, p);
 		Stack<TreeNode> path2 = path(root, q);
 		
 		if (path1 == null || path2 == null)
-			return null;
+		    return null;
 		
 		TreeNode lca = null;
 		
 		while (!path1.isEmpty() && !path2.isEmpty()) {
-			TreeNode p1 = path1.pop();
-			TreeNode p2 = path2.pop();
+		    TreeNode p1 = path1.pop();
+		    TreeNode p2 = path2.pop();
 
-			if (p1.equals(p2)) 
-				lca = p1;         // update the last LCA node
-			else
-				break;  // break when the paths diverge.
+		if (p1.equals(p2)) 
+		    lca = p1;         // update the last LCA node
+		else
+		    break;  // break when the paths diverge.
 		}
 		return lca;
 	}
@@ -80,12 +82,12 @@ public class LCABinaryTree {
 		Stack<TreeNode> right = path(root.right, x);
 
 		if (left != null) {
-			left.push(root);
-			return left;
+		    left.push(root);
+		    return left;
 		}
 		if (right != null) {
-			right.push(root);
-			return right;
+		    right.push(root);
+		    return right;
 		}
 		return null;
 	}
@@ -96,7 +98,7 @@ public class LCABinaryTree {
 		private TreeNode right;
 
 		public TreeNode(int data) {
-			this.data = data;
+		    this.data = data;
 		}
 	}
 
