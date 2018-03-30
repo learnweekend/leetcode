@@ -15,27 +15,27 @@ public class AddDigits {
 	 *  Runtime : O(1)
 	 */
 	public static int addDigits(int num) {
-		if(num < 10)  // base case, return if num < 10
-			return num;
-		while(num >= 10) {  // repeat if num >= 10
-				num = getSumOfDigits(num); 
-			}
-		return num;
+	     if(num < 10)  // base case, return if num < 10
+		 return num;
+	     while(num >= 10) {  // repeat if num >= 10
+		 num = getSumOfDigits(num); 
+	     }
+	    return num;
 	}
 	/*
 	 *  Utility method to add the digits given integer number 
 	 */
 	private static int getSumOfDigits(int number) {
-		int result = 0;
-		if(number < 10)
-			return number;
+	     int result = 0;
+	     if(number < 10)
+		return number;
 		
-		while(number != 0) {
-			int remainder = number % 10;
-			result += remainder;
-			number = number / 10;
-		}
-		return result;
+	     while(number != 0) {
+		int remainder = number % 10;
+		result += remainder;
+		number = number / 10;
+	      }
+	     return result;
 	}
 	/**
 	 *  Solution 2:  
@@ -48,7 +48,7 @@ public class AddDigits {
 		return num % 9 == 0 ? 9 : num % 9;
 	}
 	/**
-	 * 	 Solution 3:
+	 *  Solution 3:
 	 *  1. return the number if number < 10
 	 *  2. add the digits of a given number.
 	 *  3. repeat the above step 2 until the number is < 10
