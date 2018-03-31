@@ -1,8 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
 /**
  * https://leetcode.com/problems/longest-substring-without-repeating-characters/
@@ -13,7 +9,30 @@ import java.util.Set;
  * answer must be a substring, "pwke" is a subsequence and not a substring.
  */
 public class LongestSubStringWithoutRepeating {
+	/**
+	 * Brute force solution :  Get all the substring and check if all the substring have unique characters.
+	 * Runtime : O(N ^ 3), Space : O(N)
+	 */
+	public static int lengthOfLongestSubstringV1(String s) {
+		int N = s.length();
+		int max = 0;
+		for (int i = 0; i < N; i++)
+			for (int j = i + 1; j <= N; j++)
+				if (isUnique(s, i, j))
+					max = Math.max(max, j - i);
+		return max;
+	}
 	
+	public static boolean isUnique(String s, int start, int end) {
+      Set<Character> set = new HashSet<>();
+      for (int i = start; i < end; i++) {
+          char ch = s.charAt(i);
+          if (set.contains(ch)) 
+         	 return false;
+          set.add(ch);
+      }
+      return true;
+  } 
 	/** Solution : 1. have two pointers from beginning
 	 * 2. move one pointer forward for each character and insert in SET
 	 * 3. if the character is present then update the max and remove one character from the start
@@ -39,8 +58,8 @@ public class LongestSubStringWithoutRepeating {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(lengthOfLongestSubstring("abcabcbb"));
-		System.out.println(lengthOfLongestSubstring("bbbbbb"));
-		System.out.println(lengthOfLongestSubstring("pwwwkew"));
+		System.out.println(lengthOfLongestSubstringV1("abcabcbb"));
+		System.out.println(lengthOfLongestSubstringV1("bbbbbb"));
+		System.out.println(lengthOfLongestSubstringV1("pwwwkew"));
 	}
 }
