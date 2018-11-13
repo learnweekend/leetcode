@@ -1,4 +1,4 @@
-package leetcode;
+
 
 /**
  * A robot is located at the top-left corner of a m x n grid.
@@ -52,7 +52,7 @@ public class UniquePaths {
 		for(int i = 0; i < cols; i++) {
 			cache[0][i] = 1;
 		}
-		// Calculate count of paths for other 
+		// calculate count of paths for other 
       // cells in bottom-up manner using
       // the recursive solution
 		for(int row = 1; row < rows; row++) {
@@ -62,5 +62,4 @@ public class UniquePaths {
 		}
 		return cache[rows - 1][cols - 1];
 	}
-	
 }
