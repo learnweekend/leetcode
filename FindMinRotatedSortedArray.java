@@ -58,12 +58,14 @@ public class FindMinRotatedSortedArray {
 	}
 
 	/**
-	 * Solution : Binary Search 1. Start calculate mid; 2. check if complete array is sorted (zero
-	 * rotations) (nums[start] <= nums[end]) 3. In step 2, check for start not out of array range 4.
-	 * check if left is sorted ==> (nums[mid] >= nums[end]), then search on right 5. else search in left
+	 * Solution : Binary Search 
+	 * 1. Start calculate mid; 
+	 * 2. check if complete array is sorted (zero rotations) (nums[start] <= nums[end]) 
+	 * 3. In step 2, check for start not out of array range 
+	 * 4. check if left is sorted ==> (nums[mid] >= nums[end]), then search on right 
+	 * 5. else search in left
 	 */
 	public static int findMinV1(int[] nums) {
-
 		int start = 0;
 		int end = nums.length - 1;
 
@@ -81,4 +83,5 @@ public class FindMinRotatedSortedArray {
 		}
 		return nums[start]; // return nums[start];
 	}
+
 }

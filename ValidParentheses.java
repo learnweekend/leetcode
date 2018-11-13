@@ -1,73 +1,48 @@
-/*
-https://leetcode.com/problems/valid-parentheses/description/
-*/
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
 
-import java.util.*;
 /**
- * Given a string expression contains brackets (), {} or [],
- * Return true if the expression is valid else false;
+ * Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+An input string is valid if:
+
+    Open brackets must be closed by the same type of brackets.
+    Open brackets must be closed in the correct order.
+
+	Note that an empty string is also considered valid.
+ *
  */
- public class ValidParentheses {
-	  public static void main(String args[]) {
-		    //String str = "{{}}[](){[()]}([])";
-        //String str = "{()[{({})[]()}]}([])";
-        String str = "()()";
-		    System.out.println(isBalancedV1(str));
-		    System.out.println(isBalancedV2(str));
-		    //System.out.println(isBalancedV3(str));
-	  }
-	/* Solution 1: Store the valid parenthese in Map
-	 * Loop through the input and push to stack if the characer is present in the map
-	 * else, pop the stack and check the map value of the character matches.
-	 * return false if doesn't match.
-	 * Runtime : O(N);
-	 * Space   : O(N); */
-	public static boolean isBalancedV1(String expression) {
-		if (expression == null || expression.length() == 0)
-			throw new IllegalArgumentException();
+public class ValidParentheses {
+	
+	 public static boolean isValid(String s) {
+       if(s.isEmpty())
+      	 	return true;
+       Map<Character, Character> map = new HashMap<>();
+       	map.put('(', ')');
+       	map.put('[', ']');
+       	map.put('{', '}');
+       
+       Stack<Character> stack  = new Stack<>();
+       for(int i = 0; i < s.length(); i++) {
+      	 	char ch = s.charAt(i);
+      	 	if(map.containsKey(ch)) {
+      	 		stack.push(ch);
+      	 	} else {
+      	 		if(!stack.empty()) {
+      	 			char c = stack.pop();
+      	 			if(map.get(c) != ch)
+      	 				return false;
+      	 		} else {
+      	 			return false;
+      	 		}
+      	 	}
+       }
+       return stack.isEmpty();
+    }
 
-		if (expression.length() % 2 != 0) // if valid % 2 == 0
-			return false;
-
-		Map<Character, Character> parenthesesMap = new HashMap<>();
-			parenthesesMap.put('(', ')');
-			parenthesesMap.put('{', '}');
-			parenthesesMap.put('[', ']');
-		Stack<Character> stack = new Stack<>();
-
-		for (int i = 0; i < expression.length(); i++) {
-			char ch = expression.charAt(i);
-			if (parenthesesMap.containsKey(ch)) {
-				stack.push(ch);
-			} else if(stack.isEmpty() || parenthesesMap.get(stack.pop()) != ch ){
-				return false;
-			}
-		}
-		return stack.isEmpty();
-	}
-	/* Solution 2: Loop through the input and push to stack if the characer is open parenthesis
-	 * else, pop the stack and check if popped element is matching open parenthesis.
-	 * return false if doesn't match.
-	 * Runtime : O(N);
-	 * Space   : O(N);  */
-	public static boolean isBalancedV2(String expression) {
-		if (expression == null || expression.length() == 0)
-			throw new IllegalArgumentException();
-		if (expression.length() % 2 != 0)
-			return false;
-		Stack<Character> stack = new Stack<>();
-
-		for (char c : expression.toCharArray()) {
-			if (c == '{' || c == '[' || c == '(') {
-				stack.push(c);
-			} else if (c == '}' && (stack.isEmpty() || stack.pop() != '{')) {
-				return false;
-			} else if (c == ']' && (stack.isEmpty() || stack.pop() != '[')) {
-				return false;
-			} else if (c == ')' && (stack.isEmpty() || stack.pop() != '(')) {
-				return false;
-			}
-		}
-		return stack.isEmpty();
+	public static void main(String[] args) {
+		String s = "({})[]";
+		System.out.println(isValid(s));
 	}
 }
