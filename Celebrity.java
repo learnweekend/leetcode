@@ -16,7 +16,7 @@ Note: There will be exactly one celebrity if he/she is in the party. Return the 
 
  */
 
-public class FindTheCelebrity {
+public class Celebrity {
 	
 	private static int matrix[][] = 
 		{ 
